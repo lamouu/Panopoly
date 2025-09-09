@@ -11,6 +11,45 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WeaponPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WeaponPivot/Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.541, -0.582, -0.585)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/WeaponPivot/Sword:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.18682, 0.191986)]
+}
+
 [sub_resource type="Animation" id="Animation_g2els"]
 resource_name = "idle"
 length = 3.0
@@ -30,7 +69,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/WeaponPivot/sword2:position")
+tracks/1/path = NodePath("Camera3D/WeaponPivot/Sword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,7 +81,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D/WeaponPivot/sword2:rotation")
+tracks/2/path = NodePath("Camera3D/WeaponPivot/Sword:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -50,45 +89,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Vector3(0, -1.18682, 0.191986), Vector3(-0.0225121, -1.18745, 0.247744)]
-}
-
-[sub_resource type="Animation" id="Animation_qhqgy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/WeaponPivot:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/WeaponPivot/sword2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.541, -0.582, -0.585)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D/WeaponPivot/sword2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -1.18682, 0.191986)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
@@ -111,8 +111,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.661619, 0)
 
 [node name="WeaponPivot" type="Node3D" parent="Camera3D"]
 
-[node name="sword2" parent="Camera3D/WeaponPivot" instance=ExtResource("2_g2els")]
-transform = Transform3D(0.0992855, -0.0192991, -0.25034, 0.0515184, 0.265039, 0, 0.24574, -0.0477671, 0.101144, 0.541, -0.582, -0.585)
+[node name="Sword" parent="Camera3D/WeaponPivot" instance=ExtResource("2_g2els")]
+transform = Transform3D(0.0992864, -0.0192993, -0.25034, 0.0515183, 0.265039, 0, 0.24574, -0.0477669, 0.101145, 0.541, -0.582, -0.585)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
