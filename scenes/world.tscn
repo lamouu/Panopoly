@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bueot8ke22bgh"]
+[gd_scene load_steps=6 format=3 uid="uid://bueot8ke22bgh"]
 
-[ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://sword2.glb" id="1_5a7ea"]
-[ext_resource type="PackedScene" uid="uid://cym4x58rxf7qy" path="res://Objects/player.tscn" id="1_a02cp"]
-[ext_resource type="PackedScene" uid="uid://dwumyfc75in7b" path="res://sword.glb" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://cym4x58rxf7qy" path="res://scenes/player.tscn" id="1_a02cp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_go701"]
 size = Vector3(50, 1, 50)
@@ -31,9 +29,6 @@ material_override = SubResource("StandardMaterial3D_5a7ea")
 mesh = SubResource("QuadMesh_8j60k")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="sword2" parent="Floor" instance=ExtResource("1_5a7ea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.73475, 1.37721, -2.22153)
-
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839126, 0)
 
@@ -42,6 +37,3 @@ transform = Transform3D(1, 0, 0, 0, 0.0325271, 0.999471, 0, -0.999471, 0.0325271
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a02cp")
-
-[node name="sword" parent="." instance=ExtResource("2_go701")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.15241, 1.37721, -3.01715)
