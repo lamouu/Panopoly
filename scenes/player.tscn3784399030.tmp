@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bb030veembnn5" path="res://scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/sword2.glb" id="2_g2els"]
-[ext_resource type="Script" uid="uid://bmgcc5vv02d60" path="res://scripts/camera_3d.gd" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://bmgcc5vv02d60" path="res://scenes/camera_3d.gd" id="2_qhqgy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ojbdc"]
 radius = 0.4

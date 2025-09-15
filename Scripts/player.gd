@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var screenAngle
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-var sensitivity = 0.003
+var sensitivity = 0.002
 @onready var camera = $Camera3D
 
 func _ready():
@@ -42,5 +43,9 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(70))
-	
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+		
+		screenAngle = event.relative.angle() - PI/2
+
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		$Camera3D.camera_direction(screenAngle)
