@@ -11,24 +11,9 @@ var cameraAngleChange:= Vector2.ZERO
 func _ready() -> void:
 	queue_redraw()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	# find the current camera rotation in 3d space
-	var cameraRotation = %Player/Camera3D.get_global_rotation_degrees()
-	
-	# project the camera rotation onto the XY camera plane
-	currentCameraAngle = Vector2(cameraRotation[0], -cameraRotation[1])
-	
-	# if the mouse has moved since last tick
-	if currentCameraAngle != lastCameraAngle:
-		# calculate the change in camera angle
-		cameraAngleChange = currentCameraAngle - lastCameraAngle
-		
-		# convert vector2 to float and set as the rotation for the direction indicator
-		$DirectionIndicator.set_rotation(cameraAngleChange.angle())
-		
-		lastCameraAngle = currentCameraAngle
-
+func _input(event):
+	if event is InputEventMouseMotion:
+		$DirectionIndicator.set_rotation(event.relative.angle() + PI/2)
 
 func _draw():
 	draw_circle(Vector2(0,0), DOT_RADIUS, DOT_COLOUR)

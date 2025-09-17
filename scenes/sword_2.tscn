@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://boyn1ybv2r4vd"]
+
+[ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/sword2.glb" id="1_iuxju"]
+
+[node name="sword2" instance=ExtResource("1_iuxju")]
+transform = Transform3D(-1, 8.74228e-08, 4.37114e-08, -4.37114e-08, 1.91069e-15, -1, -8.74228e-08, -1, 1.91069e-15, 0, 0, 0)
