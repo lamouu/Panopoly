@@ -1,8 +1,10 @@
 extends Camera3D
 
-var SWING_TIME = 0.6
-var SWING_START_ROTATIION := PI / 7
-var SWING_END_ROTATIION := 6 * PI / 7
+var SWING_START_ROTATIION := 0.1
+var SWING_END_ROTATIION := PI
+var SWING_DURATION := 1.5
+var SWING_EASE := 2
+var SWING_TRANS := 3
 
 var tween
 
@@ -22,4 +24,4 @@ func camera_direction(screenAngle):
 	%WeaponPivot.quaternion = swingStart
 	
 	tween = get_tree().create_tween()
-	tween.tween_property(%WeaponPivot, "quaternion", swingEnd, SWING_TIME)
+	tween.tween_property(%WeaponPivot, "quaternion", swingEnd, SWING_DURATION).set_ease(SWING_EASE).set_trans(SWING_TRANS)
