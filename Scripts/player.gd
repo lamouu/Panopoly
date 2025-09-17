@@ -45,7 +45,7 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 		
-		screenAngle = event.relative.angle() - PI/2
+		screenAngle = event.relative
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		$Camera3D.camera_direction(screenAngle)

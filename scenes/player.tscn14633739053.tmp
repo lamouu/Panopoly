@@ -27,7 +27,7 @@ script = ExtResource("2_qhqgy")
 
 [node name="WeaponPivot" type="Node3D" parent="Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.469615, -0.811048)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.458, -0.685)
 
 [node name="PlayerWeapon" parent="Camera3D/WeaponPivot" instance=ExtResource("2_g2els")]
-transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, -0.117713, 0)
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, 0, 0)
