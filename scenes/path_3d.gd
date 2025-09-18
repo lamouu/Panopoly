@@ -1,6 +1,6 @@
 extends Path3D
 
-const DEBUG = false
+const DEBUG = true
 var tracerCurve
 
 # Called when the node enters the scene tree for the first time.
