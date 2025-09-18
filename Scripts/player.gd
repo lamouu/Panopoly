@@ -6,6 +6,11 @@ const JUMP_VELOCITY = 4.5
 
 var screenAngle
 
+var swing : Dictionary
+var swinging := false
+var t := 0.0
+@export var swing_inter: Curve
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -38,7 +43,13 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
-
+	elif swinging:
+		t += delta
+		%WeaponPivot.quaternion = %WeaponPivot.quaternion.slerp(swing["end"], swing_inter.sample(t))
+		
+		if t >= 1:
+			t = 0
+	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * sensitivity)
@@ -48,4 +59,7 @@ func _unhandled_input(event):
 		screenAngle = event.relative
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		$Camera3D.camera_direction(screenAngle)
+		swing = $Camera3D.calc_swing(screenAngle)
+		t = 0
+		swinging = true
+		%WeaponPivot.quaternion = swing["start"]
