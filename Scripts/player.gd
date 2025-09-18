@@ -36,7 +36,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-var sensitivity = 0.002
+var xSensitivity = 0.002
+var ySensitivity = 0.001
 @onready var camera = $Camera3D
 
 func _ready():
@@ -59,11 +60,11 @@ func _unhandled_input(event):
 		var xRotation
 		
 		if swinging:
-			yRotation = clamp(-event.relative.x * sensitivity, -TURN_CAP, TURN_CAP)
-			xRotation = clamp(-event.relative.y * sensitivity, -TURN_CAP, TURN_CAP)
+			yRotation = clamp(-event.relative.x * xSensitivity, -TURN_CAP, TURN_CAP)
+			xRotation = clamp(-event.relative.y * ySensitivity, -TURN_CAP, TURN_CAP)
 		else:
-			yRotation = -event.relative.x * sensitivity
-			xRotation = -event.relative.y * sensitivity
+			yRotation = -event.relative.x * xSensitivity	   
+			xRotation = -event.relative.y * ySensitivity
 
 		rotate_y(yRotation)
 		camera.rotate_x(xRotation)

@@ -1,7 +1,7 @@
 extends Camera3D
 
-var SWING_START_ROTATIION := 0.1
-var SWING_END_ROTATIION := PI
+@export var SWING_START_ROTATIION := .1
+@export var SWING_END_ROTATIION := PI
 
 func calc_swing(screenAngle):
 	var swingDirection = Quaternion(Vector3.FORWARD, screenAngle.angle() - PI/2)
@@ -14,4 +14,3 @@ func calc_swing(screenAngle):
 	swingEnd = swingEnd.normalized()
 	
 	return {"start": swingStart, "end": swingEnd}
-	

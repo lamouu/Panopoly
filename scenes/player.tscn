@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cym4x58rxf7qy"]
+[gd_scene load_steps=9 format=3 uid="uid://cym4x58rxf7qy"]
 
 [ext_resource type="Script" uid="uid://bb030veembnn5" path="res://scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/sword2.glb" id="2_g2els"]
@@ -7,8 +7,8 @@
 
 [sub_resource type="Curve" id="Curve_qhqgy"]
 _limits = [0.0, 0.15, 0.0, 2.0]
-_data = [Vector2(0, 0), 0.0, 0.244242, 0, 0, Vector2(1e-05, 0), 0.374089, 0.374089, 0, 0, Vector2(0.508906, 0.0772102), -0.00848716, -0.00848716, 0, 0, Vector2(2, 0), -0.120405, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(1e-05, 0), 0.374089, 0.0215409, 0, 0, Vector2(0.26972, 0.0769213), 0.0, 0.0, 0, 0, Vector2(2, 0), -0.120405, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ojbdc"]
 radius = 0.4
@@ -20,18 +20,6 @@ height = 1.8
 
 [sub_resource type="Curve3D" id="Curve3D_dqkch"]
 bake_interval = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
-transparency = 1
-albedo_color = Color(0.902126, 0, 0.127593, 0.6)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
-transparency = 1
-albedo_color = Color(0.04, 0.567, 0.033, 0.597)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
-transparency = 1
-albedo_color = Color(0.213, 0.41, 0.885, 0.602)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_y0qk3")
@@ -49,10 +37,10 @@ script = ExtResource("2_qhqgy")
 
 [node name="WeaponPivot" type="Node3D" parent="Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.594602, -0.727506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546399, -0.782155, -0.727506)
 
 [node name="PlayerWeapon" parent="Camera3D/WeaponPivot" instance=ExtResource("2_g2els")]
-transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, 0.511116, 0)
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, 0.629925, 0)
 
 [node name="TipCast" type="RayCast3D" parent="Camera3D/WeaponPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25358, -0.0753084)
@@ -62,22 +50,6 @@ top_level = true
 curve = SubResource("Curve3D_dqkch")
 script = ExtResource("4_dqkch")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Camera3D/WeaponPivot/TipCast/Path3D"]
-polygon = PackedVector2Array(0, 0, 0, 0.01, 0.01, 0.01, 0.01, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_rotation_accurate = false
-path_local = false
-path_continuous_u = false
-path_u_distance = 1.0
-path_joined = false
-smooth_faces = true
-material = SubResource("StandardMaterial3D_dqkch")
-
 [node name="MidCast" type="RayCast3D" parent="Camera3D/WeaponPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5804, -0.0753084)
 
@@ -86,22 +58,6 @@ top_level = true
 curve = SubResource("Curve3D_dqkch")
 script = ExtResource("4_dqkch")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Camera3D/WeaponPivot/MidCast/Path3D"]
-polygon = PackedVector2Array(0, 0, 0, 0.01, 0.01, 0.01, 0.01, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_rotation_accurate = false
-path_local = false
-path_continuous_u = false
-path_u_distance = 1.0
-path_joined = false
-smooth_faces = true
-material = SubResource("StandardMaterial3D_qlg0r")
-
 [node name="BaseCast" type="RayCast3D" parent="Camera3D/WeaponPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.789541, -0.0753084)
 
@@ -109,19 +65,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.789541, -0.0753084)
 top_level = true
 curve = SubResource("Curve3D_dqkch")
 script = ExtResource("4_dqkch")
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Camera3D/WeaponPivot/BaseCast/Path3D"]
-polygon = PackedVector2Array(0, 0, 0, 0.01, 0.01, 0.01, 0.01, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_rotation_accurate = false
-path_local = false
-path_continuous_u = false
-path_u_distance = 1.0
-path_joined = false
-smooth_faces = true
-material = SubResource("StandardMaterial3D_tuyoq")
