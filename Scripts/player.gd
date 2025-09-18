@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const TURN_CAP = 0.02
+const SWING_TIME = 1.3
 
 var screenAngle
 
 var swing : Dictionary
 var swinging := false
+var idle := true
 var t := 0.0
 @export var swing_inter: Curve
 
@@ -47,14 +49,24 @@ func _process(delta):
 		t += delta
 		%WeaponPivot.quaternion = %WeaponPivot.quaternion.slerp(swing["end"], swing_inter.sample(t))
 		
-		if t >= 1:
+		if t >= SWING_TIME:
 			t = 0
+			swinging = false
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * sensitivity)
-		camera.rotate_x(-event.relative.y * sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+		var yRotation
+		var xRotation
+		
+		if swinging:
+			yRotation = clamp(-event.relative.x * sensitivity, -TURN_CAP, TURN_CAP)
+			xRotation = clamp(-event.relative.y * sensitivity, -TURN_CAP, TURN_CAP)
+		else:
+			yRotation = -event.relative.x * sensitivity
+			xRotation = -event.relative.y * sensitivity
+
+		rotate_y(yRotation)
+		camera.rotate_x(xRotation)
 		
 		screenAngle = event.relative
 
