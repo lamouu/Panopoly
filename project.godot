@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [file_customization]
 
 folder_colors={
+"res://Scenes/": "orange",
+"res://Scripts/": "yellow",
 "res://art/": "red",
 "res://scenes/": "orange",
 "res://scripts/": "yellow"
