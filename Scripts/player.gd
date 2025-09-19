@@ -4,6 +4,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const TURN_CAP = 0.02
 const SWING_TIME = 1.3
+const SWING_START_ROTATIION := .1
+const SWING_END_ROTATIION := PI
 
 var screenAngle
 
@@ -72,7 +74,19 @@ func _unhandled_input(event):
 		screenAngle = event.relative
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		swing = $Camera3D.calc_swing(screenAngle)
+		swing = calc_swing(screenAngle)
 		t = 0
 		swinging = true
 		%WeaponPivot.quaternion = swing["start"]
+
+func calc_swing(screenAngle):
+	var swingDirection = Quaternion(Vector3.FORWARD, screenAngle.angle() - PI/2)
+	swingDirection = swingDirection.normalized()
+	
+	var swingStart = swingDirection*Quaternion(Vector3.MODEL_RIGHT, SWING_START_ROTATIION)
+	swingStart = swingStart.normalized()
+	
+	var swingEnd = swingDirection*Quaternion(Vector3.MODEL_RIGHT, SWING_END_ROTATIION)
+	swingEnd = swingEnd.normalized()
+	
+	return {"start": swingStart, "end": swingEnd}

@@ -1,9 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cym4x58rxf7qy"]
 
 [ext_resource type="Script" uid="uid://bb030veembnn5" path="res://scripts/player.gd" id="1_y0qk3"]
-[ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/sword2.glb" id="2_g2els"]
-[ext_resource type="Script" uid="uid://bmgcc5vv02d60" path="res://scripts/camera_3d.gd" id="2_qhqgy"]
-[ext_resource type="Script" uid="uid://daocyky3vvj6y" path="res://scenes/path_3d.gd" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/model_packages/sword2.glb" id="2_g2els"]
+[ext_resource type="Script" uid="uid://daocyky3vvj6y" path="res://scripts/ui/debug_path.gd" id="4_dqkch"]
 
 [sub_resource type="Curve" id="Curve_qhqgy"]
 _limits = [0.0, 0.15, 0.0, 2.0]
@@ -17,6 +16,25 @@ height = 1.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0qk3"]
 radius = 0.4
 height = 1.8
+
+[sub_resource type="GDScript" id="GDScript_qhqgy"]
+script/source = "extends Camera3D
+
+var SWING_START_ROTATIION := .1
+var SWING_END_ROTATIION := PI
+
+func calc_swing(screenAngle):
+	var swingDirection = Quaternion(Vector3.FORWARD, screenAngle.angle() - PI/2)
+	swingDirection = swingDirection.normalized()
+	
+	var swingStart = swingDirection*Quaternion(Vector3.MODEL_RIGHT, SWING_START_ROTATIION)
+	swingStart = swingStart.normalized()
+	
+	var swingEnd = swingDirection*Quaternion(Vector3.MODEL_RIGHT, SWING_END_ROTATIION)
+	swingEnd = swingEnd.normalized()
+	
+	return {\"start\": swingStart, \"end\": swingEnd}
+"
 
 [sub_resource type="Curve3D" id="Curve3D_dqkch"]
 bake_interval = 0.01
@@ -33,7 +51,7 @@ shape = SubResource("CapsuleShape3D_y0qk3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.661619, 0)
-script = ExtResource("2_qhqgy")
+script = SubResource("GDScript_qhqgy")
 
 [node name="WeaponPivot" type="Node3D" parent="Camera3D"]
 unique_name_in_owner = true

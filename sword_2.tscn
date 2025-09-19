@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://co6w2svk6lg0m"]
+[gd_scene load_steps=2 format=3 uid="uid://bbvlfmscnt2jw"]
 
-[ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/sword2.glb" id="1_a6m75"]
+[ext_resource type="PackedScene" uid="uid://cof4p1iry4g4x" path="res://art/models/model_packages/sword2.glb" id="1_a6m75"]
 
 [node name="sword2" instance=ExtResource("1_a6m75")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
