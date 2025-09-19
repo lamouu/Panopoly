@@ -12,7 +12,7 @@ func _ready() -> void:
 	queue_redraw()
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and event.relative != null:
 		$DirectionIndicator.set_rotation(event.relative.angle() + PI/2)
 
 func _draw():
