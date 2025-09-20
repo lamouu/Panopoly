@@ -9,8 +9,8 @@ const ySensitivity = 0.0005
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-# Sword
-const TURN_CAP = 0.2
-const SWING_TIME = 1.3
-const SWING_START_ROTATIION := .1
-const SWING_END_ROTATIION := PI
+# Sword (swing curve accessable in Player node)
+const TURN_CAP = 0.3
+const SWING_TIME = 0.55
+const SWING_START_ROTATIION = 0.1
+const SWING_END_ROTATIION = PI

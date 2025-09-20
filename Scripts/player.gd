@@ -36,9 +36,14 @@ func _process(delta):
 		get_tree().quit()
 	elif swinging:
 		t += delta
-		%WeaponPivot.quaternion = %WeaponPivot.quaternion.slerp(swing["end"], swing_curve.sample(t))
+		var progress = clamp(t / cons.SWING_TIME, 0.0, 1.0)
+		var swing_angle = cons.SWING_END_ROTATIION - cons.SWING_START_ROTATIION
+		var current_rotation = swing_angle * progress * swing_curve.sample(progress)
+		# dumbass: progress' scaling means that swing_curve.sample(progress) has very little weight at the start
 		
-		if t >= cons.SWING_TIME:
+		%WeaponPivot.quaternion = swing["start"].slerp(swing["end"], min(1.0, current_rotation / swing["start"].angle_to(swing["end"])))
+		
+		if progress >= 1.0:
 			t = 0
 			swinging = false
 	
@@ -64,7 +69,7 @@ func _unhandled_input(event):
 		
 		screenAngle = event.relative
 
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.is_pressed() and screenAngle != null and event.button_index == MOUSE_BUTTON_LEFT:
 		swing = calc_swing(screenAngle)
 		t = 0
 		swinging = true
