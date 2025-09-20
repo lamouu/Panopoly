@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://daocyky3vvj6y" path="res://scripts/ui/debug_path.gd" id="4_dqkch"]
 
 [sub_resource type="Curve" id="Curve_qhqgy"]
-_data = [Vector2(0, 0.17977536), 0.0, 0.07211134, 0, 0, Vector2(0.5627907, 0.32584274), 0.9550559, 0.9550559, 0, 0, Vector2(0.7813953, 0.59550565), 1.6104866, 1.6104866, 0, 0, Vector2(1, 1), 1.404494, 0.0, 0, 0]
+_data = [Vector2(0, 0.17977536), 0.0, 0.07211134, 0, 0, Vector2(0.46046513, 0.23595512), 0.9550559, 0.9550559, 0, 0, Vector2(0.7813953, 0.59550565), 1.6104866, 1.6104866, 0, 0, Vector2(1, 1), 1.404494, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ojbdc"]

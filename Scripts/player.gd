@@ -1,12 +1,20 @@
 extends CharacterBody3D
 
-var screenAngle
-
 @export var swing_curve: Curve
+
+# state stuff to be refactored
 var swing : Dictionary
 var swinging := false
 var idle := true
-var t := 0.0
+
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+
+var speed
+var t_bob = 0.0
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -14,22 +22,37 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = cons.JUMP_VELOCITY
-
+	
+	if Input.is_action_pressed("shift"):
+		speed = cons.RUN_SPEED
+	else:
+		speed = cons.WALK_SPEED
+	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * cons.SPEED
-		velocity.z = direction.z * cons.SPEED
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		velocity.x = move_toward(velocity.x, 0, cons.SPEED)
-		velocity.z = move_toward(velocity.z, 0, cons.SPEED)
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.0)
+	
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	$Camera3D.transform.origin = _headbob(t_bob)
+	
+	var velocity_clamped = clamp(velocity.length(), 0.5, cons.RUN_SPEED * 2)
+	var target_fov = cons.BASE_FOV + cons.FOV_CHANGE * velocity_clamped
+	$Camera3D.fov = lerp($Camera3D.fov, target_fov, delta * 8.0)
 
 	move_and_slide()
 
-@onready var camera = $Camera3D
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+var t := 0.0
 
 func _process(delta):
 	if Input.is_action_just_pressed("escape"):
@@ -47,6 +70,9 @@ func _process(delta):
 			t = 0
 			swinging = false
 	
+	
+var	screenAngle
+	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		var yRotation
@@ -61,11 +87,11 @@ func _unhandled_input(event):
 			ySens = cons.ySensitivity
 			xSens = cons.xSensitivity
 		
-		yRotation = -event.relative.x * xSens   
+		yRotation = -event.relative.x * xSens
 		xRotation = -event.relative.y * ySens
 
 		rotate_y(yRotation)
-		camera.rotate_x(xRotation)
+		$Camera3D.rotate_x(xRotation)
 		
 		screenAngle = event.relative
 
@@ -74,6 +100,12 @@ func _unhandled_input(event):
 		t = 0
 		swinging = true
 		%WeaponPivot.quaternion = swing["start"]
+
+func _headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * cons.BOB_FREQUENCY) * cons.BOB_AMPLITUDE
+	pos.x = cos(time * cons.BOB_FREQUENCY / 2) * cons.BOB_AMPLITUDE / 2
+	return pos
 
 func calc_swing(screenAngle):
 	var swingDirection = Quaternion(Vector3.FORWARD, screenAngle.angle() - PI/2)
