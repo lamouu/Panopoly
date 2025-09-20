@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bjidde358njcy"
-path="res://.godot/imported/rock.glb-f71046da34ce95a4522933db063bf616.scn"
+uid="uid://d4auefsr21eud"
+path="res://.godot/imported/Rock.glb-000a982251b56e31f53153e226a9eed7.scn"
 
 [deps]
 
-source_file="res://art/models/model_packages/rock.glb"
-dest_files=["res://.godot/imported/rock.glb-f71046da34ce95a4522933db063bf616.scn"]
+source_file="res://art/models/model_packages/Rock.glb"
+dest_files=["res://.godot/imported/Rock.glb-000a982251b56e31f53153e226a9eed7.scn"]
 
 [params]
 
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=1
+gltf/naming_version=2
 gltf/embedded_image_handling=1
