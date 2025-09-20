@@ -55,10 +55,10 @@ script = SubResource("GDScript_qhqgy")
 
 [node name="WeaponPivot" type="Node3D" parent="Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.415476, -0.7778211, -0.727506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46126786, -0.5537075, -0.727506)
 
 [node name="PlayerWeapon" parent="Camera3D/WeaponPivot" instance=ExtResource("3_dqkch")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.46681237, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0060638785, 0.27087465, 0.010601401)
 
 [node name="TipCast" type="RayCast3D" parent="Camera3D/WeaponPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25358, -0.0753084)
