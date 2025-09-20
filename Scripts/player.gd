@@ -25,8 +25,12 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("shift"):
 		speed = cons.RUN_SPEED
+	elif Input.is_action_pressed("ctrl"):
+		speed = cons.CROUCH_SPEED
+		$CollisionShape3D.shape.height = cons.CROUCH_HEIGHT
 	else:
 		speed = cons.WALK_SPEED
+		$CollisionShape3D.shape.height = cons.STANDING_HEIGHT
 	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

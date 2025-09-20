@@ -10,7 +10,10 @@ const FOV_CHANGE = 1.5
 # Player
 const WALK_SPEED = 2.0
 const RUN_SPEED = 2.5
+const CROUCH_SPEED = 1.0
 const JUMP_VELOCITY = 3.0
+const STANDING_HEIGHT = 1.8
+const CROUCH_HEIGHT = 1.0
 const BOB_FREQUENCY = 3.0
 const BOB_AMPLITUDE = 0.04
 
